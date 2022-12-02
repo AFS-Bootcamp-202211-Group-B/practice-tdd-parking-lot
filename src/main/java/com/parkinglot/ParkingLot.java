@@ -3,6 +3,7 @@ package com.parkinglot;
 import java.util.HashMap;
 
 public class ParkingLot {
+
     private HashMap<Ticket, Car> ticketCarHashMap = new HashMap<>();
 
     private final int capacity;
@@ -30,6 +31,6 @@ public class ParkingLot {
             return car;
         }
 
-        return null;
+        throw new UnrecognizedParkingTicketException("Unrecognized Parking Ticket");
     }
 }

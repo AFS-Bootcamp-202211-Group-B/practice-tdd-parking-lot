@@ -54,16 +54,17 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_null_when_giving_wrong_ticket_to_get_the_car(){
+    void should_return_exception_when_giving_unrecognized_ticket_to_get_the_car(){
         ///Given
         ParkingLot parkingLot = new ParkingLot();
+        Ticket unrecognizedParkingTicket = new Ticket();
 
         //When
-        Ticket ticket = new Ticket();
-        Car car = parkingLot.getCar(ticket);
 
         //Then
-        assertNull(car);
+        Exception exception = assertThrows(UnrecognizedParkingTicketException.class, () -> parkingLot.getCar(unrecognizedParkingTicket));
+        assertEquals("Unrecognized Parking Ticket", exception.getMessage());
+
     }
 
     @Test
@@ -74,9 +75,10 @@ public class ParkingLotTest {
         Ticket ticket = parkingLot.park(car);
         parkingLot.getCar(ticket);
         //When
-        Car getCarTwice = parkingLot.getCar(ticket);
+
         //Then
-        assertNull(getCarTwice);
+        Exception exception = assertThrows(UnrecognizedParkingTicketException.class, () -> parkingLot.getCar(ticket));
+        assertEquals("Unrecognized Parking Ticket", exception.getMessage());
     }
 
     @Test
