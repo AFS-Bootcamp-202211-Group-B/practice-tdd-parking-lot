@@ -70,8 +70,8 @@ public class StandardParkingBoyTest {
         ParkingLot parkingLot = new ParkingLot(1);
         StandardParkingBoy parkingBoy = new StandardParkingBoy(parkingLot);
         Car car = new Car();
-        Ticket ticket = parkingLot.park(car);
-        parkingLot.fetch(ticket);
+        Ticket ticket = parkingBoy.park(car);
+        parkingBoy.fetch(ticket);
         //then
         Exception exception = assertThrows(unrecognizedTicketException.class, () -> parkingBoy.fetch(ticket));
         assertEquals("Unrecognized parking ticket.",exception.getMessage());
@@ -85,7 +85,7 @@ public class StandardParkingBoyTest {
         StandardParkingBoy parkingBoy = new StandardParkingBoy(parkingLot);
         Car car = new Car();
         Car car2 = new Car();
-        parkingLot.park(car);
+        parkingBoy.park(car);
         //then
         Exception exception = assertThrows(noAnyPositionException.class, () -> parkingBoy.park(car2));
         assertEquals("No available position.",exception.getMessage());
@@ -182,7 +182,5 @@ public class StandardParkingBoyTest {
         //then
         Exception exception = assertThrows(unrecognizedTicketException.class, () -> parkingBoy.fetch(ticket));
         assertEquals("Unrecognized parking ticket.",exception.getMessage());
-        //then
-
     }
 }
