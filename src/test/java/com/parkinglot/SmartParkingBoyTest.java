@@ -109,5 +109,25 @@ class SmartParkingBoyTest {
         assertEquals("No available position.",e.getMessage());
     }
 
+    @Test
+    void should_return_ticket_from_second_parkingLot_when_park_given_two_available_parkingLots_where_parkingLots1_is_fulled_and_car(){
+        //given
+        ParkingLot parkingLot1 = new ParkingLot();
+        for(int i=0;i<10;i++){
+            parkingLot1.park(new Car());
+        }
+        ParkingLot parkingLot2 = new ParkingLot();
+        for(int i=0;i<9;i++){
+            parkingLot2.park(new Car());
+        }
 
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+
+        Car car = new Car();
+        //when
+        Ticket ticket = smartParkingBoy.park(car);
+
+        //then
+        assertTrue(parkingLot2.has(ticket));
+    }
 }
