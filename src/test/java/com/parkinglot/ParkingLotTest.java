@@ -11,9 +11,12 @@ public class ParkingLotTest {
     // ticket.
     @Test
     public void should_return_ticket_when_park_given_car() {
+        // given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
+        // when
         Ticket ticket = parkingLot.park(car);
+        // then
         assertNotNull(ticket);
 
     }
@@ -22,10 +25,13 @@ public class ParkingLotTest {
     // return the parked car.
     @Test
     public void should_return_parked_car_when_fetch_given_parked_car() {
+        // given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
         Ticket ticket = parkingLot.park(car);
+        // when
         Car fetchedCar = parkingLot.fetch(ticket);
+        // then
         assertEquals(car, fetchedCar);
     }
 
@@ -34,13 +40,16 @@ public class ParkingLotTest {
     // them return corresponding cars.
     @Test
     public void should_return_corresponding_cars_when_fetch_twice_given_two_cars() {
+        // given
         ParkingLot parkingLot = new ParkingLot();
         Car car1 = new Car();
         Car car2 = new Car();
         Ticket ticket1 = parkingLot.park(car1);
         Ticket ticket2 = parkingLot.park(car2);
+        // when
         Car fetchedCar1 = parkingLot.fetch(ticket1);
         Car fetchedCar2 = parkingLot.fetch(ticket2);
+        // then
         assertEquals(car1, fetchedCar1);
         assertEquals(car2, fetchedCar2);
 
@@ -54,12 +63,11 @@ public class ParkingLotTest {
         // given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
+        Ticket ticket = new Ticket();
         // when
-        Ticket ticket1 = parkingLot.park(car);
-        Ticket ticket2 = new Ticket();
-        Car fetchedCar = parkingLot.fetch(ticket2);
+        Car fetchedCar = parkingLot.fetch(ticket);
         // then
-        assertEquals(fetchedCar, null);
+        assertEquals(null, fetchedCar);
 
     }
 
@@ -72,9 +80,9 @@ public class ParkingLotTest {
         // given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
-        // when
         Ticket ticket = parkingLot.park(car);
         parkingLot.fetch(ticket);
+        // when
         Car fetchedCar = parkingLot.fetch(ticket);
         // then
         assertEquals(null, fetchedCar);
