@@ -191,4 +191,22 @@ public class ParkingBoyTest {
         //then
         assertEquals("Unrecognized parking ticket.",e.getMessage());
     }
+
+//    Given a standard parking boy, who manage two parking lots, both without any position, and a car, When park the car
+//    , Then return nothing with error message "No available position.
+    @Test
+    void should_raise_Exception_with_errorMsg_when_park_given_two_fulled_parkingLogs_and_car(){
+        //given
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        for(int i=0;i<10;i++){
+            parkingLot1.park(new Car());
+            parkingLot2.park(new Car());
+        }
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        Car car = new Car();
+        //when
+        Exception e = assertThrows(FullParkingLotException.class,() ->parkingBoy.park(car));
+        assertEquals("No available position.",e.getMessage());
+    }
 }
