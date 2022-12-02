@@ -42,7 +42,7 @@ public class ParkingLotTest {
         assertEquals(parkedCar2, actualCar2);
     }
     @Test
-    void should_return_nothing_when_fetch_twice_given_wrong_tickets() {
+    void should_return_nothing_when_fetch_given_wrong_tickets() {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Ticket ticket = new Ticket();
@@ -52,7 +52,7 @@ public class ParkingLotTest {
         assertNull(actual);
     }
     @Test
-    void should_return_nothing_when_fetch_twice_given_used_ticket() {
+    void should_return_nothing_when_fetch_given_used_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
@@ -60,6 +60,16 @@ public class ParkingLotTest {
         parkingLot.fetch(ticket);
         //when
         Car actual = parkingLot.fetch(ticket);
+        //then
+        assertNull(actual);
+    }
+    @Test
+    void should_return_nothing_when_park_given_parkingLot_full() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(10);
+        Car car = new Car();
+        //when
+        Ticket actual = parkingLot.park(car);
         //then
         assertNull(actual);
     }
