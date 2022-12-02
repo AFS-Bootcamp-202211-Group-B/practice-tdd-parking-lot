@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ParkingLotTest {
+class ParkingLotTest {
     @Test
     void should_return_ticket_when_park_given_a_parkingLot() {
         //given
