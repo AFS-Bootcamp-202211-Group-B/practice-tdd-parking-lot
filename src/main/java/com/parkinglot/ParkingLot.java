@@ -1,16 +1,19 @@
 package com.parkinglot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ParkingLot {
-    private Car parkedCar;
+    private Map<Ticket, Car> parkedCar = new HashMap<>();
     public Ticket park(Car car) {
-        this.parkedCar=car;
-        return new Ticket();
+        Ticket ticket = new Ticket();
+        parkedCar.put(ticket, car);
+        return ticket;
     }
 
     public Car fetch(Ticket ticket) {
-        return this.parkedCar;
+        return parkedCar.get(ticket);
     }
 }
