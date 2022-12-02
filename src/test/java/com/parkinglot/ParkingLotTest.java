@@ -52,50 +52,6 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_nothing_when_fetch_car_given_a_parking_lot_and_wrong_ticket(){
-        //given
-        ParkingLot parkingLot = new ParkingLot(10);
-        Car bobCar = new Car();
-
-        //when
-        Car aliceFetchedCar = parkingLot.fetch(new ParkingTicket()) ;
-
-        //then
-        assertEquals(null, aliceFetchedCar);
-    }
-
-    @Test
-    void should_return_nothing_when_fetch_car_given_a_parking_lot_and_used_ticket(){
-        //given
-        ParkingLot parkingLot = new ParkingLot(10);
-        Car bobCar = new Car();
-        ParkingTicket bobTicket = parkingLot.park(bobCar);
-        Car bob = parkingLot.fetch(bobTicket) ;
-
-        //when
-        Car aliceFetchedCar = parkingLot.fetch(bobTicket) ;
-
-        //then
-        assertEquals(null, aliceFetchedCar);
-    }
-
-    @Test
-    void should_return_nothing_when_park_car_given_a_parking_lot_without_any_position_and_car(){
-        //given
-        ParkingLot parkingLot = new ParkingLot(1);
-
-        //when
-        Car bob = new Car();
-        ParkingTicket bobTickete = parkingLot.park(bob);
-        Car aliceCar = new Car();
-        ParkingTicket aliceTicket = parkingLot.park(aliceCar);
-        aliceCar =  parkingLot.fetch(aliceTicket) ;
-
-        //then
-        assertEquals(null, aliceCar);
-    }
-
-    @Test
     void should_return_exception_with_error_message_when_fetch_given_unrecognized_ticket(){
         //given
         ParkingLot parkingLot = new ParkingLot(10);
