@@ -62,4 +62,19 @@ public class ParkingBoyTest {
         Exception e = assertThrows(UnrecognizedParkingTicketException.class, ()-> parkingBoy.fetch(wrongParkingTicket));
         assertEquals("Ticket not found",e.getMessage());
     }
+
+    @Test
+    void should_return_Exception_and_errorMsg_when_fetch_given_parkingLot_used_ticket(){
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car();
+
+        Ticket oldTicket = parkingBoy.park(car);
+        parkingBoy.fetch(oldTicket);
+
+        //then
+        Exception e = assertThrows(UnrecognizedParkingTicketException.class, ()-> parkingBoy.fetch(oldTicket));
+        assertEquals("Ticket not found",e.getMessage());
+    }
 }
