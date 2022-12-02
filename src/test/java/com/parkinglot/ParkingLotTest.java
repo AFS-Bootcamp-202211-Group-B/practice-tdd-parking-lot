@@ -51,25 +51,35 @@ public class ParkingLotTest {
     // null.
     @Test
     public void should_return_null_when_fetch_given_wrong_ticket() {
+        // given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
+        // when
         Ticket ticket1 = parkingLot.park(car);
         Ticket ticket2 = new Ticket();
         Car fetchedCar = parkingLot.fetch(ticket2);
+        // then
         assertEquals(fetchedCar, null);
 
     }
 
     // Given a parking lot, and no ticket, when fetch the car, then return null.
-    @Test
-    public void should_return_null_when_fetch_given_no_ticket() {
-        ParkingLot parkingLot = new ParkingLot();
-        Car fetchedCar = parkingLot.fetch(null);
-        assertEquals(fetchedCar, null);
 
-    }
     // AC4
     // Given a parking lot, and a used ticket, when fetch the car, then return null.
+    @Test
+    public void should_return_null_when_fetch_given_used_ticket() {
+        // given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+        // when
+        Ticket ticket = parkingLot.park(car);
+        parkingLot.fetch(ticket);
+        Car fetchedCar = parkingLot.fetch(ticket);
+        // then
+        assertEquals(null, fetchedCar);
+
+    }
     // AC5
     // Given a full parking lot, and a car, when park the car, then return null.
 }
