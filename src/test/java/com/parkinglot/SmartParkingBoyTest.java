@@ -25,9 +25,23 @@ public class SmartParkingBoyTest {
         assertNotNull(ticket);
 
     }
+
     // Given first full parking lot and second parking lot with available positions,
     // a smart parking boy, and a car, when park the car, then return a parking
     // ticket from second parking lot.
+    @Test
+    public void should_return_parked_car_from_second_parking_lot_when_fetch_given_first_full_parking_lot_and_second_parking_lot_with_empty_position() {
+        // given
+        ParkingLot fullParkingLot = new ParkingLot(1);
+        fullParkingLot.park(new Car());
+        ParkingLot availableParkingLot = new ParkingLot(1);
+        List<ParkingLot> parkingLotList = Arrays.asList(fullParkingLot, availableParkingLot);
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLotList);
+        // when
+        Ticket ticket = parkingBoy.park(new Car());
+        // then
+        assertNotNull(ticket);
+    }
 
     // Given first parking lot with 1 empty position, capacity 5, and second parking
     // lot with 2 empty positions, capacity 3, a smart parking boy, and a car, when
