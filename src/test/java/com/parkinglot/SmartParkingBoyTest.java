@@ -25,7 +25,7 @@ class SmartParkingBoyTest {
         assertTrue(parkingLot1.has(ticket));
     }
     @Test
-    void should_return_ticket_from_first_parkingLot_when_park_given_two_available_parkingLots_where_parkingLots2_has_the_most_space_and_car(){
+    void should_return_ticket_from_second_parkingLot_when_park_given_two_available_parkingLots_where_parkingLots2_has_the_most_space_and_car(){
         //given
         ParkingLot parkingLot1 = new ParkingLot();
         for(int i=0;i<3;i++){
@@ -108,4 +108,6 @@ class SmartParkingBoyTest {
         Exception e = assertThrows(FullParkingLotException.class,() ->parkingBoy.park(car));
         assertEquals("No available position.",e.getMessage());
     }
+
+
 }
