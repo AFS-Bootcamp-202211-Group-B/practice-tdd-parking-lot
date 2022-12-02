@@ -33,4 +33,18 @@ public class ParkingLot {
 
         throw new UnrecognizedParkingTicketException("Unrecognized Parking Ticket");
     }
+
+    public int getAvailablePositionCount() {
+        return capacity - ticketCarHashMap.size();
+    }
+
+    public int getTotalCapacity () { return capacity; }
+
+    public double getAvailablePositionRate() {
+        return getAvailablePositionCount() * 1.0 / getTotalCapacity();
+    }
+
+    public boolean isContainCar(Ticket ticket) {
+        return ticketCarHashMap.containsKey(ticket);
+    }
 }
