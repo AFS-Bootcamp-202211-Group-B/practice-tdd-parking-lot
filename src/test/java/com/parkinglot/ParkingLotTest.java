@@ -55,7 +55,9 @@ public class ParkingLotTest {
     void should_return_nothing_when_fetch_twice_given_used_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot();
-        Ticket ticket = new Ticket(true);
+        Car car = new Car();
+        Ticket ticket = parkingLot.park(car);
+        parkingLot.fetch(ticket);
         //when
         Car actual = parkingLot.fetch(ticket);
         //then
