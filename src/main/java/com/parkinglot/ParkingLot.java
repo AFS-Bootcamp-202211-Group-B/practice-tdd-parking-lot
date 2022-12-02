@@ -18,7 +18,7 @@ public class ParkingLot {
         this.capacity = 10;
     }
     public  Ticket park(Car car) {
-        if (ticketCarHashMap.size() >= capacity) return null;
+        if (ticketCarHashMap.size() >= capacity) throw new NoAvailablePosition("No available position");;
         Ticket ticket = new Ticket();
         ticketCarHashMap.put(ticket,car);
         return  ticket;
