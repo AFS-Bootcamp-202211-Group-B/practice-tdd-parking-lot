@@ -2,10 +2,12 @@ package com.parkinglot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 public class ParkingLotTest {
+    // Story 1
     // AC1
     // Given a parking lot, and a car, when park the car, then return a parking
     // ticket.
@@ -58,35 +60,35 @@ public class ParkingLotTest {
     // AC3
     // Given a parking lot, and a wrong ticket, when fetch the car, then return
     // null.
-    @Test
-    public void should_return_null_when_fetch_given_wrong_ticket() {
-        // given
-        ParkingLot parkingLot = new ParkingLot();
-        Ticket ticket = new Ticket();
-        // when
-        Car fetchedCar = parkingLot.fetch(ticket);
-        // then
-        assertEquals(null, fetchedCar);
+    // @Test
+    // public void should_return_null_when_fetch_given_wrong_ticket() {
+    // // given
+    // ParkingLot parkingLot = new ParkingLot();
+    // Ticket ticket = new Ticket();
+    // // when
+    // Car fetchedCar = parkingLot.fetch(ticket);
+    // // then
+    // assertEquals(null, fetchedCar);
 
-    }
+    // }
 
     // Given a parking lot, and no ticket, when fetch the car, then return null.
 
     // AC4
     // Given a parking lot, and a used ticket, when fetch the car, then return null.
-    @Test
-    public void should_return_null_when_fetch_given_used_ticket() {
-        // given
-        ParkingLot parkingLot = new ParkingLot();
-        Car car = new Car();
-        Ticket ticket = parkingLot.park(car);
-        parkingLot.fetch(ticket);
-        // when
-        Car fetchedCar = parkingLot.fetch(ticket);
-        // then
-        assertEquals(null, fetchedCar);
+    // @Test
+    // public void should_return_null_when_fetch_given_used_ticket() {
+    // // given
+    // ParkingLot parkingLot = new ParkingLot();
+    // Car car = new Car();
+    // Ticket ticket = parkingLot.park(car);
+    // parkingLot.fetch(ticket);
+    // // when
+    // Car fetchedCar = parkingLot.fetch(ticket);
+    // // then
+    // assertEquals(null, fetchedCar);
 
-    }
+    // }
 
     // AC5
     // Given a full parking lot, and a car, when park the car, then return null.
@@ -106,4 +108,59 @@ public class ParkingLotTest {
         assertEquals(null, ticket);
 
     }
+
+    // Story 2
+    // AC1
+    // Given a parking lot, and a wrong ticket, when fetch the car, then return
+    // null, and throw "Unrecognized parking ticket".
+    @Test
+    public void should_return_unrecognized_parking_ticket_exception_when_fetch_given_wrong_ticket() {
+        // given
+        ParkingLot parkingLot = new ParkingLot();
+        Ticket ticket = new Ticket();
+        // when
+        // then
+        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> parkingLot.fetch(ticket));
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
+
+    }
+
+    // // Given a parking lot, and a used ticket, when fetch the car, then return
+    // null,
+    // // and throw "Unrecognized parking ticket".
+    // @Test
+    // public void should_return_exception_when_fetch_given_used_ticket() {
+    // // given
+    // ParkingLot parkingLot = new ParkingLot();
+    // Car car = new Car();
+    // Ticket ticket = parkingLot.park(car);
+    // parkingLot.fetch(ticket);
+    // // when
+    // // then
+    // Exception exception = assertThrows(UnrecognizedTicketException.class, () ->
+    // parkingLot.fetch(ticket));
+    // assertEquals("Unrecognized parking ticket.", exception.getMessage());
+
+    // }
+
+    // // AC2
+    // // Given a full parking lot, and a car, when park the car, then return null,
+    // and
+    // // throw "No available position".
+    // @Test
+    // public void should_return_exception_when_park_given_full_parking_lot() {
+    // // given
+    // ParkingLot parkingLot = new ParkingLot(3);
+    // for (int i = 0; i < 3; i++) {
+    // Car car = new Car();
+    // parkingLot.park(car);
+    // }
+
+    // // when
+    // Car car = new Car();
+    // Ticket ticket = parkingLot.park(car);
+    // // then
+    // assertEquals(null, ticket);
+
+    // }
 }

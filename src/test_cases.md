@@ -1,3 +1,4 @@
+Story 1
 AC1
 Given a parking lot, and a car, when park the car, then return a parking ticket.
 Given a parking lot with a parked car, and a ticket, when fetch the car, them return the parked car.
@@ -10,3 +11,10 @@ AC4
 Given a parking lot, and a used ticket, when fetch the car, then return null.
 AC5
 Given a full parking lot, and a car, when park the car, then return null.
+
+Story 2
+AC1
+Given a parking lot, and a wrong ticket, when fetch the car, then return null, and throw "Unrecognized parking ticket".
+Given a parking lot, and a used ticket, when fetch the car, then return null, and throw "Unrecognized parking ticket".
+AC2
+Given a full parking lot, and a car, when park the car, then return null, and throw "No available position".

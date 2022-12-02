@@ -16,7 +16,8 @@ public class ParkingLot {
     }
 
     public Ticket park(Car car) {
-        if (isFull()) return null;
+        if (isFull())
+            return null;
         Ticket ticket = new Ticket();
         parkedPosition.put(ticket, car);
         return ticket;
@@ -28,6 +29,8 @@ public class ParkingLot {
 
     public Car fetch(Ticket ticket) {
         Car car = parkedPosition.get(ticket);
+        if (car == null)
+            throw new UnrecognizedTicketException();
         parkedPosition.remove(ticket);
         return car;
     }
