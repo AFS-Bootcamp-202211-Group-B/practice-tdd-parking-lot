@@ -17,7 +17,7 @@ public class ParkingLot {
             this.parkedCar.put(ticket,car);
             return ticket;
         }
-        throw  new noAnyPositionException();
+        throw new noAnyPositionException();
     }
     public Car fetch(Ticket ticket) throws unrecognizedTicketException{
         if(isUnrecognizedTicket(ticket)) {
@@ -29,7 +29,11 @@ public class ParkingLot {
 
     }
 
-    private boolean isUnrecognizedTicket(Ticket ticket) {
+    protected boolean isUnrecognizedTicket(Ticket ticket) {
         return !this.parkedCar.containsKey(ticket);
     }
+    protected boolean isFull() {
+        return this.parkedCar.size() >= capacity;
+    }
+
 }
