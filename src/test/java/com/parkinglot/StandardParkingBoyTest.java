@@ -2,6 +2,7 @@ package com.parkinglot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,7 +56,17 @@ public class StandardParkingBoyTest {
 
     // Given a parking lot, a parking boy, and a wrong ticket, when fetch the car,
     // then return null, and throw "Unrecognized parking ticket".
+    @Test
+    public void should_return_unrecognized_parking_ticket_exception_when_fetch_given_parking_lot_and_wrong_ticket() {
+        // given
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot());
+        Ticket ticket = new Ticket();
+        // when
+        // then
+        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> parkingBoy.fetch(ticket));
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
 
+    }
     // Given a parking lot, a parking boy, and a used ticket, when fetch the car,
     // then return null, and throw "Unrecognized parking ticket".
 
