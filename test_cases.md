@@ -27,3 +27,19 @@ Then return nothing.
 Given a parking lot without any position, and a car
 When park the car
 Then return nothing. 
+
+AC1
+Case 1
+Given a parking lot, and a car
+When fetch the car with unrecognized ticket
+Then return error message "Unrecognized parking ticket"
+
+Case 2 
+Given a parking lot, and a car
+When fetch the car with used ticket
+Then return error message "Unrecognized parking ticket"
+AC2
+Case 3 
+Given a parking lot without any position and a car
+When park the car
+Then return error message "No available position"
