@@ -15,8 +15,8 @@ public class ParkingLot {
         this.capacity = capacity;
     }
 
-    public Ticket park(Car car) {
-        if(isFull()) return null;
+    public Ticket park(Car car) throws NoAvailablePositionException{
+        if(isFull()) throw new NoAvailablePositionException();
         Ticket ticket = new Ticket();
         carTicketMap.put(ticket, car);
         return ticket;
@@ -24,9 +24,10 @@ public class ParkingLot {
     private boolean isFull() {
         return carTicketMap.size() == this.capacity;
     }
-    public Car fetch(Ticket ticket) {
+    public Car fetch(Ticket ticket) throws UnrecognizedMessageException{
         Car parkedCar = carTicketMap.get(ticket);
         carTicketMap.remove(ticket);
+        if(parkedCar == null) throw new UnrecognizedMessageException();
         return parkedCar;
     }
 }
