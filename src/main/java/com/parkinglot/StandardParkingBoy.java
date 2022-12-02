@@ -24,7 +24,7 @@ public class StandardParkingBoy {
                 continue;
             }
         }
-        return null;
+        throw new NoAvailablePositionException();
     }
 
     public Car fetch(Ticket ticket) {
@@ -37,6 +37,6 @@ public class StandardParkingBoy {
                 continue;
             }
         }
-        return null;
+        throw new UnrecognizedTicketException();
     }
 }
