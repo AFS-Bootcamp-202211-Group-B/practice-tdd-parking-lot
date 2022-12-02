@@ -20,7 +20,7 @@ public class StandardParkingBoy {
                 Ticket ticket = parkingLot.park(car);
                 if (ticket != null)
                     return ticket;
-            } catch (UnrecognizedTicketException e) {
+            } catch (NoAvailablePositionException e) {
                 continue;
             }
         }

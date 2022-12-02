@@ -118,11 +118,24 @@ public class StandardParkingBoyTest {
         Ticket ticket = parkingBoy.park(car);
         // then
         assertNotNull(ticket);
-
     }
+
     // Given first full parking lot and second parking lot with available positions,
     // a parking boy, and a car, when park the car, then return a parking ticket.
+    @Test
+    public void should_return_ticket_when_park_given_one_full_parking_lot_one_with_positions_and_a_car() {
+        // given
+        ParkingLot fullParkingLot = new ParkingLot(1);
+        fullParkingLot.park(new Car());
+        ParkingLot availableParkingLot = new ParkingLot(1);
+        List<ParkingLot> parkingLotList = Arrays.asList(fullParkingLot, availableParkingLot);
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(parkingLotList);
+        // when
+        Ticket ticket = parkingBoy.park(new Car());
+        // then
+        assertNotNull(ticket);
 
+    }
     // Given two parking lots with a parked car each, a parking boy, two cars, and
     // two tickets, when fetch the car twice, then return corresponding cars.
 
