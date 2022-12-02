@@ -66,6 +66,20 @@ public class ParkingLotTest {
         assertEquals(null, aliceFetchedCar);
     }
 
+    @Test
+    void should_return_nothing_when_fetch_car_given_a_parking_lot_and_used_ticket(){
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Car bobCar = new Car();
+        ParkingTicket bobTicket = parkingLot.park(bobCar);
+        Car bob = parkingLot.fetch(bobTicket) ;
+
+        //when
+        Car aliceFetchedCar = parkingLot.fetch(bobTicket) ;
+
+        //then
+        assertEquals(null, aliceFetchedCar);
+    }
 
 
 
