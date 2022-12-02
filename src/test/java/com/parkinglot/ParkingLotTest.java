@@ -92,22 +92,22 @@ public class ParkingLotTest {
 
     // AC5
     // Given a full parking lot, and a car, when park the car, then return null.
-    @Test
-    public void should_return_null_when_park_given_full_parking_lot() {
-        // given
-        ParkingLot parkingLot = new ParkingLot(3);
-        for (int i = 0; i < 3; i++) {
-            Car car = new Car();
-            parkingLot.park(car);
-        }
+    // @Test
+    // public void should_return_null_when_park_given_full_parking_lot() {
+    // // given
+    // ParkingLot parkingLot = new ParkingLot(3);
+    // for (int i = 0; i < 3; i++) {
+    // Car car = new Car();
+    // parkingLot.park(car);
+    // }
 
-        // when
-        Car car = new Car();
-        Ticket ticket = parkingLot.park(car);
-        // then
-        assertEquals(null, ticket);
+    // // when
+    // Car car = new Car();
+    // Ticket ticket = parkingLot.park(car);
+    // // then
+    // assertEquals(null, ticket);
 
-    }
+    // }
 
     // Story 2
     // AC1
@@ -141,24 +141,21 @@ public class ParkingLotTest {
 
     }
 
-    // // AC2
-    // // Given a full parking lot, and a car, when park the car, then return null,
-    // and
-    // // throw "No available position".
-    // @Test
-    // public void should_return_exception_when_park_given_full_parking_lot() {
-    // // given
-    // ParkingLot parkingLot = new ParkingLot(3);
-    // for (int i = 0; i < 3; i++) {
-    // Car car = new Car();
-    // parkingLot.park(car);
-    // }
+    // AC2
+    // Given a full parking lot, and a car, when park the car, then return null, and
+    // throw "No available position".
+    @Test
+    public void should_return_no_available_exception_when_park_given_full_parking_lot() {
+        // given
+        ParkingLot parkingLot = new ParkingLot(3);
+        for (int i = 0; i < 3; i++) {
+            Car car = new Car();
+            parkingLot.park(car);
+        }
+        // when
+        // then
+        Exception exception = assertThrows(NoAvailablePositionException.class, () -> parkingLot.park(new Car()));
+        assertEquals("No available position.", exception.getMessage());
 
-    // // when
-    // Car car = new Car();
-    // Ticket ticket = parkingLot.park(car);
-    // // then
-    // assertEquals(null, ticket);
-
-    // }
+    }
 }
