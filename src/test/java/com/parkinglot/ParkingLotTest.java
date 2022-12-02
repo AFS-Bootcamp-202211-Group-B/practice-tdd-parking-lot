@@ -50,7 +50,8 @@ public class ParkingLotTest {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
-        Ticket realTicket = parkingLot.park(car);
+        //real
+        parkingLot.park(car);
         Ticket fakeTicket = new Ticket();
 
         //when
@@ -70,14 +71,29 @@ public class ParkingLotTest {
 
         Ticket oldTicket = parkingLot.park(car);
         parkingLot.fetch(oldTicket);
-        Ticket newTicket = parkingLot.park(car);
 
         //when
         Car returnCar1 = parkingLot.fetch(oldTicket);
-        Car returnCar2 = parkingLot.fetch(newTicket);
-
         //then
         assertNull(returnCar1);
-        assertEquals(car,returnCar2);
+    }
+
+//    Given a parking lot without any position, and a car, When park the car, Then return nothing
+    @Test
+    void should_return_nothing_when_park_given_fulled_parkingLot(){
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        for(int i=0;i<10;i++){
+            Car tempCar=new Car();
+            parkingLot.park(tempCar);
+        }
+
+        Car extraCar = new Car();
+
+        //when
+        Ticket ticket = parkingLot.park(extraCar);
+
+        //then
+        assertNull(ticket);
     }
 }
