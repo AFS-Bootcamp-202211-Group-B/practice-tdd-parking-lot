@@ -69,4 +69,18 @@ public class ParkingBoyTest {
         assertEquals("Unrecognized Parking Ticket", exception.getMessage());
 
     }
+    @Test
+    void should_return_null_when_parking_boy_get_a_car_use_a_used_ticket(){
+        ///Given
+        ParkingLot parkingLot = new ParkingLot();
+        StandardParkingBoy parKingBoy = new StandardParkingBoy(parkingLot);
+        Car car = new Car();
+        Ticket ticket = parKingBoy.park(car);
+        parKingBoy.getCar(ticket);
+        //When
+
+        //Then
+        Exception exception = assertThrows(UnrecognizedParkingTicketException.class, () -> parKingBoy.getCar(ticket));
+        assertEquals("Unrecognized Parking Ticket", exception.getMessage());
+    }
 }
