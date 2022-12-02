@@ -97,7 +97,7 @@ public class ParkingBoyTest {
                 ()-> parkingBoy.park(extraCar));
         assertEquals("No available position.",e.getMessage());
     }
-
+//----------------------------[story4]----------------------------------------------------------------------------------
 //    Given a standard parking boy, who manage two parking lots, both with available position, and a car, When park the
 //    car, Then the car will be parked to the first parking lot
     @Test
