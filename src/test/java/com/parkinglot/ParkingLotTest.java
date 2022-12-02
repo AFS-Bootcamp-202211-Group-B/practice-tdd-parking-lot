@@ -45,39 +45,6 @@ public class ParkingLotTest {
         assertEquals(car2,returnCar2);
     }
 
-    @Test
-    void should_return_nothing_when_fetch_given_parkingLot_and_wrong_ticket(){
-        //given
-        ParkingLot parkingLot = new ParkingLot();
-        Car car = new Car();
-        //real
-        parkingLot.park(car);
-        Ticket fakeTicket = new Ticket();
-
-        //when
-        Car returnCar = parkingLot.fetch(fakeTicket);
-
-        //then
-        assertNotEquals(car,returnCar);
-        assertNull(returnCar);
-    }
-
-//    Case 5 - Given a parking lot, and a used parking ticket, When fetch the car, Then return nothing
-    @Test
-    void should_return_nothing_when_fetch_given_parkingLot_and_a_used_ticket(){
-        //given
-        ParkingLot parkingLot = new ParkingLot();
-        Car car = new Car();
-
-        Ticket oldTicket = parkingLot.park(car);
-        parkingLot.fetch(oldTicket);
-
-        //when
-        Car returnCar1 = parkingLot.fetch(oldTicket);
-        //then
-        assertNull(returnCar1);
-    }
-
 //    Given a parking lot without any position, and a car, When park the car, Then return nothing
     @Test
     void should_return_nothing_when_park_given_fulled_parkingLot(){
@@ -95,5 +62,34 @@ public class ParkingLotTest {
 
         //then
         assertNull(ticket);
+    }
+
+    @Test
+    void should_return_Exception_when_fetch_given_unrecognized_ticket(){
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Ticket wrongParkingTicket= new Ticket();
+
+        //when
+
+        //then
+        assertThrows(UnrecognizedParkingTicketException.class,
+                ()-> parkingLot.fetch(wrongParkingTicket),
+                "Ticket not found");
+    }
+
+    @Test
+    void should_return_Exception_when_fetch_given__used_ticket(){
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+
+        Ticket oldTicket = parkingLot.park(car);
+        parkingLot.fetch(oldTicket);
+
+        //then
+        assertThrows(UnrecognizedParkingTicketException.class,
+                ()-> parkingLot.fetch(oldTicket),
+                "Ticket not found");
     }
 }
