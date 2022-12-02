@@ -104,6 +104,7 @@ public class StandardParkingBoyTest {
         //when
         parkingBoy.park(car);
         //then
-        assertTrue(firstParkingLot.isFull());
+        assertEquals(1,firstParkingLot.getParkedCar().size());
+        assertEquals(0,secondParkingLot.getParkedCar().size());
     }
 }

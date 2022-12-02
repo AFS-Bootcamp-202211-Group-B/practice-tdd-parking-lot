@@ -36,4 +36,7 @@ public class ParkingLot {
         return this.parkedCar.size() >= capacity;
     }
 
+    protected Map<Ticket, Car> getParkedCar() {
+        return parkedCar;
+    }
 }
