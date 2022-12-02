@@ -59,7 +59,15 @@ public class ParkingLotTest {
         assertEquals(fetchedCar, null);
 
     }
+
     // Given a parking lot, and no ticket, when fetch the car, then return null.
+    @Test
+    public void should_return_null_when_fetch_given_no_ticket() {
+        ParkingLot parkingLot = new ParkingLot();
+        Car fetchedCar = parkingLot.fetch(null);
+        assertEquals(fetchedCar, null);
+
+    }
     // AC4
     // Given a parking lot, and a used ticket, when fetch the car, then return null.
     // AC5
