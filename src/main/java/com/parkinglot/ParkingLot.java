@@ -17,7 +17,7 @@ public class ParkingLot {
             this.parkedCar.put(ticket,car);
             return ticket;
         }
-        return null;
+        throw  new noAnyPositionException();
     }
     public Car fetch(Ticket ticket) throws unrecognizedTicketException{
         if(isUnrecognizedTicket(ticket)) {

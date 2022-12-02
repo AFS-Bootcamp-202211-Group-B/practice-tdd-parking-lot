@@ -72,16 +72,16 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_nothing_when_park_given_without_position() {
+    void should_return_exception_when_park_given_without_position() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
         Ticket ticket1 = parkingLot.park(car);
         //when
         Car car2 = new Car();
-        Ticket ticket2 = parkingLot.park(car2);
         //then
-        assertNull(ticket2);
+        Exception exception = assertThrows(noAnyPositionException.class, () -> parkingLot.park(car2));
+        assertEquals("No available position.",exception.getMessage());
 
     }
 }
