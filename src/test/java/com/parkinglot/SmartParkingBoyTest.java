@@ -119,6 +119,22 @@ public class SmartParkingBoyTest {
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
 
     }
+
     // Given two full parking lots, a smart parking boy, and a car, when park the
     // car, then throw "No available position".
+    @Test
+    public void should_return_no_available_position_exception_when_park_given_two_full_parking_lots() {
+        // given
+        ParkingLot fullParkingLot1 = new ParkingLot(1);
+        fullParkingLot1.park(new Car());
+        ParkingLot fullParkingLot2 = new ParkingLot(1);
+        fullParkingLot2.park(new Car());
+        List<ParkingLot> parkingLotList = Arrays.asList(fullParkingLot1, fullParkingLot2);
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLotList);
+        // when
+        // then
+        Exception exception = assertThrows(NoAvailablePositionException.class, () -> parkingBoy.park(new Car()));
+        assertEquals("No available position.", exception.getMessage());
+
+    }
 }
