@@ -49,7 +49,16 @@ public class ParkingLotTest {
     // AC3
     // Given a parking lot, and a wrong ticket, when fetch the car, then return
     // null.
+    @Test
+    public void should_return_null_when_fetch_given_wrong_ticket() {
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+        Ticket ticket1 = parkingLot.park(car);
+        Ticket ticket2 = new Ticket();
+        Car fetchedCar = parkingLot.fetch(ticket2);
+        assertEquals(fetchedCar, null);
 
+    }
     // Given a parking lot, and no ticket, when fetch the car, then return null.
     // AC4
     // Given a parking lot, and a used ticket, when fetch the car, then return null.
