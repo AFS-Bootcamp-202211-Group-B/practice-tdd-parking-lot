@@ -80,6 +80,23 @@ public class ParkingLotTest {
         assertEquals(null, fetchedCar);
 
     }
+
     // AC5
     // Given a full parking lot, and a car, when park the car, then return null.
+    @Test
+    public void should_return_null_when_fetch_given_full_parking_lot() {
+        // given
+        ParkingLot parkingLot = new ParkingLot(3);
+        for (int i = 0; i < 3; i++) {
+            Car car = new Car();
+            parkingLot.park(car);
+        }
+
+        // when
+        Car car = new Car();
+        Ticket ticket = parkingLot.park(car);
+        // then
+        assertEquals(null, ticket);
+
+    }
 }
