@@ -62,7 +62,6 @@ public class ParkingLotTest {
     public void should_return_null_when_fetch_given_wrong_ticket() {
         // given
         ParkingLot parkingLot = new ParkingLot();
-        Car car = new Car();
         Ticket ticket = new Ticket();
         // when
         Car fetchedCar = parkingLot.fetch(ticket);
