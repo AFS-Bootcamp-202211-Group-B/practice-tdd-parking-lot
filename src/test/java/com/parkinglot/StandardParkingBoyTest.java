@@ -57,7 +57,7 @@ public class StandardParkingBoyTest {
     // Given a parking lot, a parking boy, and a wrong ticket, when fetch the car,
     // then return null, and throw "Unrecognized parking ticket".
     @Test
-    public void should_return_unrecognized_parking_ticket_exception_when_fetch_given_parking_lot_and_wrong_ticket() {
+    public void should_return_unrecognized_parking_ticket_exception_when_fetch_given_parking_lot_and_unrecognized_ticket() {
         // given
         StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot());
         Ticket ticket = new Ticket();
