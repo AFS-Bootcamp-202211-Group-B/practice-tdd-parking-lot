@@ -32,6 +32,19 @@ public class ParkingLotTest {
     // AC2
     // Given a parking lot, two cars, and two tickets, when fetch the car twice,
     // them return corresponding cars.
+    @Test
+    public void should_return_corresponding_cars_when_fetch_twice_given_two_cars() {
+        ParkingLot parkingLot = new ParkingLot();
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Ticket ticket1 = parkingLot.park(car1);
+        Ticket ticket2 = parkingLot.park(car2);
+        Car fetchedCar1 = ticket1.fetch();
+        Car fetchedCar2 = ticket2.fetch();
+        assertEquals(car1, fetchedCar1);
+        assertEquals(car2, fetchedCar2);
+
+    }
 
     // AC3
     // Given a parking lot, and a wrong ticket, when fetch the car, then return
