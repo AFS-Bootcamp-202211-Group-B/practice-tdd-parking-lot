@@ -145,7 +145,7 @@ public class ParkingLotTest {
     // Given a full parking lot, and a car, when park the car, then return null, and
     // throw "No available position".
     @Test
-    public void should_return_no_available_exception_when_park_given_full_parking_lot() {
+    public void should_return_no_available_position_exception_when_park_given_full_parking_lot() {
         // given
         ParkingLot parkingLot = new ParkingLot(3);
         for (int i = 0; i < 3; i++) {
