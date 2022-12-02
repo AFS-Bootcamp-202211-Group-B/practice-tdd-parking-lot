@@ -28,7 +28,15 @@ public class StandardParkingBoy {
     }
 
     public Car fetch(Ticket ticket) {
-        return new Car();
-        // return parkingLot.fetch(ticket);
+        for (ParkingLot parkingLot : parkingLotList) {
+            try {
+                Car car = parkingLot.fetch(ticket);
+                if (car != null)
+                    return car;
+            } catch (UnrecognizedTicketException e) {
+                continue;
+            }
+        }
+        return null;
     }
 }

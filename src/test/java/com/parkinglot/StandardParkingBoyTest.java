@@ -136,9 +136,28 @@ public class StandardParkingBoyTest {
         assertNotNull(ticket);
 
     }
+
     // Given two parking lots with a parked car each, a parking boy, two cars, and
     // two tickets, when fetch the car twice, then return corresponding cars.
+    @Test
+    public void should_return_corresponding_cars_when_fetch_twice_given_two_parking_lots_with_a_parked_car_each_and_two_tickets_and_two_cars() {
+        // given
+        ParkingLot parkingLot1 = new ParkingLot();
+        Car car1 = new Car();
+        Ticket ticket1 = parkingLot1.park(car1);
+        ParkingLot parkingLot2 = new ParkingLot();
+        Car car2 = new Car();
+        Ticket ticket2 = parkingLot2.park(car2);
+        List<ParkingLot> parkingLotList = Arrays.asList(parkingLot1, parkingLot2);
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(parkingLotList);
+        // when
+        Car fetchedCar1 = parkingBoy.fetch(ticket1);
+        Car fetchedCar2 = parkingBoy.fetch(ticket2);
+        // then
+        assertEquals(car1, fetchedCar1);
+        assertEquals(car2, fetchedCar2);
 
+    }
     // Given two parking lots, a parking boy, and an unrecognized ticket in any
     // parking lots, when fetch the car, then throw "Unrecognized parking ticket".
 
