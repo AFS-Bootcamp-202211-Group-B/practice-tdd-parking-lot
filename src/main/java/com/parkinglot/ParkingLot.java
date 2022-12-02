@@ -37,4 +37,9 @@ public class ParkingLot {
     public boolean has(Ticket ticket) {
         return !(parkedCar.get(ticket)==null);
     }
+
+    public int getRemainingSpace(){
+        return this.size-this.parkedCar.size();
+    }
+
 }
