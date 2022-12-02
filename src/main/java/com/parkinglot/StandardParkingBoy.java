@@ -1,17 +1,34 @@
 package com.parkinglot;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class StandardParkingBoy {
-    private ParkingLot parkingLot;
+    private List<ParkingLot> parkingLotList;
 
     public StandardParkingBoy(ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
+        parkingLotList = Arrays.asList(parkingLot);
+    }
+
+    public StandardParkingBoy(List<ParkingLot> parkingLotList) {
+        this.parkingLotList = parkingLotList;
     }
 
     public Ticket park(Car car) {
-        return parkingLot.park(car);
+        for (ParkingLot parkingLot : parkingLotList) {
+            try {
+                Ticket ticket = parkingLot.park(car);
+                if (ticket != null)
+                    return ticket;
+            } catch (UnrecognizedTicketException e) {
+                continue;
+            }
+        }
+        return null;
     }
 
     public Car fetch(Ticket ticket) {
-        return parkingLot.fetch(ticket);
+        return new Car();
+        // return parkingLot.fetch(ticket);
     }
 }

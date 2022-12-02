@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 public class StandardParkingBoyTest {
@@ -100,5 +104,36 @@ public class StandardParkingBoyTest {
         assertEquals("No available position.", exception.getMessage());
 
     }
+
+    // Story 4
+    // Given two empty parking lots, a parking boy, and a car, when park the car,
+    // then return a parking ticket.
+    @Test
+    public void should_return_ticket_when_park_given_two_empty_parking_lot_and_car() {
+        // given
+        List<ParkingLot> parkingLotList = Arrays.asList(new ParkingLot(), new ParkingLot());
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(parkingLotList);
+        Car car = new Car();
+        // when
+        Ticket ticket = parkingBoy.park(car);
+        // then
+        assertNotNull(ticket);
+
+    }
+    // Given first full parking lot and second parking lot with available positions,
+    // a parking boy, and a car, when park the car, then return a parking ticket.
+
+    // Given two parking lots with a parked car each, a parking boy, two cars, and
+    // two tickets, when fetch the car twice, then return corresponding cars.
+
+    // Given two parking lots, a parking boy, and an unrecognized ticket in any
+    // parking lots, when fetch the car, then throw "Unrecognized parking ticket".
+
+    // Given two parking lots, a parking boy, and a used ticket in any one of the
+    // parking lots, when fetch the car, then and throw "Unrecognized parking
+    // ticket".
+
+    // Given two full parking lots, a parking boy, and a car, when park the car,
+    // then throw "No available position".
 
 }
