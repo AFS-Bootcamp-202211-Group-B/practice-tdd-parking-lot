@@ -106,11 +106,33 @@ public class ParkingBoyTest {
         ParkingLot parkingLot1 = new ParkingLot();
         ParkingLot parkingLot2 = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+
         Car car = new Car();
         //when
         Ticket ticket = parkingBoy.park(car);
 
         //then
         assertTrue(parkingLot1.has(ticket));
+    }
+
+//   Given a standard parking boy, who manage two parking lots, first is full and second with available position, and a
+//   car, When park the car, Then the car will be parked to the second parking lot
+    @Test
+    void should_return_ticket_from_second_parkingLot_when_park_given_1stFullParkingLot_and_2ndAvaParkingLot_and_car(){
+        //given
+        ParkingLot parkingLot1 = new ParkingLot();
+        for(int i=0;i<10;i++){
+            Car tempCar=new Car();
+            parkingLot1.park(tempCar);
+        }
+        ParkingLot parkingLot2 = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        Car car = new Car();
+        //when
+        Ticket ticket = parkingBoy.park(car);
+
+        //then
+        assertFalse(parkingLot1.has(ticket));
+        assertTrue(parkingLot2.has(ticket));
     }
 }
