@@ -17,7 +17,7 @@ public class ParkingLot {
 
     public Ticket park(Car car) {
         if(this.parkedCar.size()>=this.size) {
-            throw new FullParkingLotException("ParkingLot is fulled");
+            throw new FullParkingLotException("No available position.");
         }
         Ticket ticket = new Ticket();
         parkedCar.put(ticket, car);
@@ -28,9 +28,13 @@ public class ParkingLot {
     public Car fetch(Ticket ticket) {
         Car returnCar = parkedCar.get(ticket);
         if(returnCar==null){
-            throw new UnrecognizedParkingTicketException("Ticket not found");
+            throw new UnrecognizedParkingTicketException("Unrecognized parking ticket.");
         }
         parkedCar.remove(ticket);
         return returnCar;
+    }
+
+    public boolean has(Ticket ticket) {
+        return !(parkedCar.get(ticket)==null);
     }
 }

@@ -2,11 +2,14 @@ package com.parkinglot;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingBoyTest {
     @Test
-    void should_return_ticket_when_park_given_parkingLot_parkingBoy_car(){
+    void should_return_ticket_when_park_given_parkingLot_and_parkingBoy_car(){
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -20,7 +23,7 @@ public class ParkingBoyTest {
 
 
     @Test
-    void should_return_Car_when_Fetch_given_parkingLot_Ticket(){
+    void should_return_Car_when_Fetch_given_parkingLot_and_Ticket(){
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -33,7 +36,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    void should_return_right_Car_when_Fetch_given_parkingLot_two_parked_cars_and_tickets(){
+    void should_return_right_Car_when_Fetch_given_parkingLot_and_two_parked_cars_and_tickets(){
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -50,7 +53,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    void should_return_Exception_when_fetch_given_parkingLot_unrecognized_ticket(){
+    void should_return_Exception_when_fetch_given_parkingLot_and_unrecognized_ticket(){
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -60,11 +63,11 @@ public class ParkingBoyTest {
 
         //then
         Exception e = assertThrows(UnrecognizedParkingTicketException.class, ()-> parkingBoy.fetch(wrongParkingTicket));
-        assertEquals("Ticket not found",e.getMessage());
+        assertEquals("Unrecognized parking ticket.",e.getMessage());
     }
 
     @Test
-    void should_return_Exception_and_errorMsg_when_fetch_given_parkingLot_used_ticket(){
+    void should_return_Exception_and_errorMsg_when_fetch_given_parkingLot_and_used_ticket(){
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -75,11 +78,11 @@ public class ParkingBoyTest {
 
         //then
         Exception e = assertThrows(UnrecognizedParkingTicketException.class, ()-> parkingBoy.fetch(oldTicket));
-        assertEquals("Ticket not found",e.getMessage());
+        assertEquals("Unrecognized parking ticket.",e.getMessage());
     }
 
     @Test
-    void should_return_Exception_and_errorMsg_when_park_given_parkingLog_fulled_parkingLot(){
+    void should_return_Exception_and_errorMsg_when_park_given_parkingLog_and_fulled_parkingLot(){
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -92,6 +95,22 @@ public class ParkingBoyTest {
         //then
         Exception e = assertThrows(FullParkingLotException.class,
                 ()-> parkingBoy.park(extraCar));
-        assertEquals("ParkingLot is fulled",e.getMessage());
+        assertEquals("No available position.",e.getMessage());
+    }
+
+//    Given a standard parking boy, who manage two parking lots, both with available position, and a car, When park the
+//    car, Then the car will be parked to the first parking lot
+    @Test
+    void should_return_ticket_from_first_parkingLot_when_park_given_two_available_parkingLots_and_car(){
+        //given
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        Car car = new Car();
+        //when
+        Ticket ticket = parkingBoy.park(car);
+
+        //then
+        assertTrue(parkingLot1.has(ticket));
     }
 }

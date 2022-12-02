@@ -55,7 +55,7 @@ public class ParkingLotTest {
 
         //then
         Exception e = assertThrows(UnrecognizedParkingTicketException.class, ()-> parkingLot.fetch(wrongParkingTicket));
-        assertEquals("Ticket not found",e.getMessage());
+        assertEquals("Unrecognized parking ticket.",e.getMessage());
     }
 
     @Test
@@ -69,7 +69,7 @@ public class ParkingLotTest {
 
         //then
         Exception e = assertThrows(UnrecognizedParkingTicketException.class, ()-> parkingLot.fetch(oldTicket));
-        assertEquals("Ticket not found",e.getMessage());
+        assertEquals("Unrecognized parking ticket.",e.getMessage());
     }
 
     @Test
@@ -85,6 +85,6 @@ public class ParkingLotTest {
         //then
         Exception e = assertThrows(FullParkingLotException.class,
                 ()-> parkingLot.park(extraCar));
-        assertEquals("ParkingLot is fulled",e.getMessage());
+        assertEquals("No available position.",e.getMessage());
     }
 }
