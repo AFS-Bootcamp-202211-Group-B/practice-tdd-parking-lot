@@ -16,12 +16,18 @@ public class StandardParkingBoy {
     }
 
     public Ticket park(Car car) {
-        ParkingLot notFullParkingLot = parkingLots.stream().filter(parkingLot -> !parkingLot.isFull()).findFirst().orElseThrow(noAnyPositionException::new);
+        ParkingLot notFullParkingLot = parkingLots.stream()
+                .filter(parkingLot -> !parkingLot.isFull())
+                .findFirst()
+                .orElseThrow(noAnyPositionException::new);
         return notFullParkingLot.park(car);
     }
 
     public Car fetch(Ticket ticket) {
-        ParkingLot fetchToParkingLot = parkingLots.stream().filter(parkingLot -> !parkingLot.isUnrecognizedTicket(ticket)).findFirst().orElseThrow(unrecognizedTicketException::new);
+        ParkingLot fetchToParkingLot = parkingLots.stream()
+                .filter(parkingLot -> !parkingLot.isUnrecognizedTicket(ticket))
+                .findFirst()
+                .orElseThrow(unrecognizedTicketException::new);
         return fetchToParkingLot.fetch(ticket);
     }
 }
