@@ -33,7 +33,7 @@ class SmartParkingBoyTest {
         }
         ParkingLot parkingLot2 = new ParkingLot();
 
-        ParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
 
         Car car = new Car();
         //when
@@ -43,4 +43,22 @@ class SmartParkingBoyTest {
         assertTrue(parkingLot2.has(ticket));
     }
 
+    @Test
+    void should_return_two_right_car_from_corresponding_ticket_when_fetch_given_2parkingLots_both_with_parked_car_and_two_ticket(){
+        //given
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Ticket ticket1 = parkingLot1.park(car1);
+        Ticket ticket2 = parkingLot2.park(car2);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        //when
+        Car returnCar1 = smartParkingBoy.fetch(ticket1);
+        Car returnCar2 = smartParkingBoy.fetch(ticket2);
+
+        //then
+        assertEquals(car1,returnCar1);
+        assertEquals(car2,returnCar2);
+    }
 }
