@@ -49,8 +49,8 @@ public class ParkingLotTest {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
-        Ticket ticket = parkingLot.park(car);
-        Car fetchedCar = parkingLot.fetch(ticket);
+        Ticket ticket = new Ticket();
+
 
         //then
         Exception exception = assertThrows(unrecognizedTicketException.class, () -> parkingLot.fetch(ticket));
@@ -58,17 +58,16 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_nothing_when_fetch_given_used_ticket() {
+    void should_return_exception_when_fetch_given_used_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
         Ticket ticket = parkingLot.park(car);
         Car fetchedCar = parkingLot.fetch(ticket);
         //when
-        Ticket usedTicket = ticket;
-        Car UsedTicketFetchedCar = parkingLot.fetch(ticket);
         //then
-        assertNull(UsedTicketFetchedCar);
+        Exception exception = assertThrows(unrecognizedTicketException.class, () -> parkingLot.fetch(ticket));
+        assertEquals("Unrecognized parking ticket.",exception.getMessage());
 
     }
 
