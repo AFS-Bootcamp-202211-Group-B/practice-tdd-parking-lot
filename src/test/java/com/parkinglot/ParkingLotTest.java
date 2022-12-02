@@ -51,5 +51,15 @@ public class ParkingLotTest {
         //then
         assertNull(actual);
     }
+    @Test
+    void should_return_nothing_when_fetch_twice_given_used_ticket() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Ticket ticket = new Ticket(true);
+        //when
+        Car actual = parkingLot.fetch(ticket);
+        //then
+        assertNull(actual);
+    }
     
 }
