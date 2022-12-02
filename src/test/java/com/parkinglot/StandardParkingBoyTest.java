@@ -69,7 +69,7 @@ public class StandardParkingBoyTest {
         StandardParkingBoy parkingBoy = new StandardParkingBoy(parkingLot);
         Car car = new Car();
         Ticket ticket = parkingLot.park(car);
-        Car fetchedCar = parkingLot.fetch(ticket);
+        parkingLot.fetch(ticket);
         //when
         //then
         Exception exception = assertThrows(unrecognizedTicketException.class, () -> parkingBoy.fetch(ticket));
@@ -83,9 +83,10 @@ public class StandardParkingBoyTest {
         ParkingLot parkingLot = new ParkingLot(1);
         StandardParkingBoy parkingBoy = new StandardParkingBoy(parkingLot);
         Car car = new Car();
-        Ticket ticket1 = parkingLot.park(car);
-        //when
         Car car2 = new Car();
+        parkingLot.park(car);
+        //when
+
         //then
         Exception exception = assertThrows(noAnyPositionException.class, () -> parkingBoy.park(car2));
         assertEquals("No available position.",exception.getMessage());
