@@ -15,16 +15,18 @@ public class SmartParkingBoy {
     }
 
     public Ticket park(Car car) {
+        ParkingLot toPark = null;
+        int availablePositions = 0;
         for (ParkingLot parkingLot : parkingLotList) {
-            try {
-                Ticket ticket = parkingLot.park(car);
-                if (ticket != null)
-                    return ticket;
-            } catch (NoAvailablePositionException e) {
-                continue;
+            int currentAvailablePositions = parkingLot.countAvailablePositions();
+            if (currentAvailablePositions > availablePositions) {
+                availablePositions = currentAvailablePositions;
+                toPark = parkingLot;
             }
         }
-        throw new NoAvailablePositionException();
+        if (toPark == null)
+            throw new NoAvailablePositionException();
+        return toPark.park(car);
     }
 
     public Car fetch(Ticket ticket) {

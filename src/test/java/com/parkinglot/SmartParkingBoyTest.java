@@ -46,7 +46,23 @@ public class SmartParkingBoyTest {
     // Given first parking lot with 1 empty position, capacity 5, and second parking
     // lot with 2 empty positions, capacity 3, a smart parking boy, and a car, when
     // park the car, then return a parking ticket from second parking lot.
-
+    @Test
+    public void should_return_parked_car_from_second_parking_lot_when_fetch_given_first_parking_lot_with_1_empty_position_and_second_parking_lot_with_2_empty_positions() {
+        // given
+        ParkingLot parkingLot1 = new ParkingLot(5);
+        for (int i = 0; i < 3; i++) {
+            Car car = new Car();
+            parkingLot1.park(car);
+        }
+        ParkingLot parkingLot2 = new ParkingLot(3);
+        List<ParkingLot> parkingLotList = Arrays.asList(parkingLot1, parkingLot2);
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(parkingLotList);
+        // when
+        Ticket ticket = parkingBoy.park(new Car());
+        // then
+        // check ticket is from parkingLot2 and fetch does not return null/ exception
+        assertEquals(parkingLot2.fetch(ticket).getClass(), Car.class);
+    }
     // Given two parking lots with a parked car each, a smart parking boy, two cars,
     // and two tickets, when fetch the car twice, then return corresponding cars.
 
