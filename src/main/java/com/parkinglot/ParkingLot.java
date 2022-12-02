@@ -1,7 +1,5 @@
 package com.parkinglot;
 
-import sun.security.krb5.internal.Ticket;
-
 import java.util.HashMap;
 import java.util.Map;
 
