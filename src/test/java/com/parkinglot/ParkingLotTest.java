@@ -125,23 +125,21 @@ public class ParkingLotTest {
 
     }
 
-    // // Given a parking lot, and a used ticket, when fetch the car, then return
-    // null,
-    // // and throw "Unrecognized parking ticket".
-    // @Test
-    // public void should_return_exception_when_fetch_given_used_ticket() {
-    // // given
-    // ParkingLot parkingLot = new ParkingLot();
-    // Car car = new Car();
-    // Ticket ticket = parkingLot.park(car);
-    // parkingLot.fetch(ticket);
-    // // when
-    // // then
-    // Exception exception = assertThrows(UnrecognizedTicketException.class, () ->
-    // parkingLot.fetch(ticket));
-    // assertEquals("Unrecognized parking ticket.", exception.getMessage());
+    // Given a parking lot, and a used ticket, when fetch the car, then return null,
+    // and throw "Unrecognized parking ticket".
+    @Test
+    public void should_return_unrecognized_parking_ticket_exception_when_fetch_given_used_ticket() {
+        // given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+        Ticket ticket = parkingLot.park(car);
+        parkingLot.fetch(ticket);
+        // when
+        // then
+        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> parkingLot.fetch(ticket));
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
 
-    // }
+    }
 
     // // AC2
     // // Given a full parking lot, and a car, when park the car, then return null,
