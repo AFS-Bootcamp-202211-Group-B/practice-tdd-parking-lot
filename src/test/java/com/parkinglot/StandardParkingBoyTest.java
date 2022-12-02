@@ -71,20 +71,34 @@ public class StandardParkingBoyTest {
     // Given a parking lot, a parking boy, and a used ticket, when fetch the car,
     // then return null, and throw "Unrecognized parking ticket".
     @Test
-    public void should_return_unrecognized_parking_ticket_exception_when_fetch_given_used_ticket() {
+    public void should_return_unrecognized_parking_ticket_exception_when_fetch_given_parking_lot_and_used_ticket() {
         // given
-        ParkingLot parkingLot = new ParkingLot();
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot());
         Car car = new Car();
-        Ticket ticket = parkingLot.park(car);
-        parkingLot.fetch(ticket);
+        Ticket ticket = parkingBoy.park(car);
+        parkingBoy.fetch(ticket);
         // when
         // then
-        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> parkingLot.fetch(ticket));
+        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> parkingBoy.fetch(ticket));
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
 
     }
 
     // Given a full parking lot, a parking boy, and a car, when park the car, then
     // return null, and throw "No available position".
+    @Test
+    public void should_return_no_available_position_exception_when_park_given_full_parking_lot() {
+        // given
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(3));
+        for (int i = 0; i < 3; i++) {
+            Car car = new Car();
+            parkingBoy.park(car);
+        }
+        // when
+        // then
+        Exception exception = assertThrows(NoAvailablePositionException.class, () -> parkingBoy.park(new Car()));
+        assertEquals("No available position.", exception.getMessage());
+
+    }
 
 }
