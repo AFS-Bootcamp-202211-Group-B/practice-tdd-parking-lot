@@ -82,6 +82,5 @@ public class ParkingLotTest {
         //then
         Exception exception = assertThrows(noAnyPositionException.class, () -> parkingLot.park(car2));
         assertEquals("No available position.",exception.getMessage());
-
     }
 }
