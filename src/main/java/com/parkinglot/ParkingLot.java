@@ -1,7 +1,7 @@
 package com.parkinglot;
 
 public class ParkingLot {
-    public Ticket park() {
-        return new Ticket();
+    public Ticket park(Car car) {
+        return new Ticket(car);
     }
 }
