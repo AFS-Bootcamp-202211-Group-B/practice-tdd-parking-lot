@@ -45,25 +45,6 @@ public class ParkingLotTest {
         assertEquals(car2,returnCar2);
     }
 
-//    Given a parking lot without any position, and a car, When park the car, Then return nothing
-    @Test
-    void should_return_nothing_when_park_given_fulled_parkingLot(){
-        //given
-        ParkingLot parkingLot = new ParkingLot();
-        for(int i=0;i<10;i++){
-            Car tempCar=new Car();
-            parkingLot.park(tempCar);
-        }
-
-        Car extraCar = new Car();
-
-        //when
-        Ticket ticket = parkingLot.park(extraCar);
-
-        //then
-        assertNull(ticket);
-    }
-
     @Test
     void should_return_Exception_when_fetch_given_unrecognized_ticket(){
         //given
@@ -79,7 +60,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_Exception_when_fetch_given__used_ticket(){
+    void should_return_Exception_and_errorMsg_when_fetch_given_used_ticket(){
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
@@ -91,5 +72,21 @@ public class ParkingLotTest {
         assertThrows(UnrecognizedParkingTicketException.class,
                 ()-> parkingLot.fetch(oldTicket),
                 "Ticket not found");
+    }
+
+    @Test
+    void should_return_Exception_and_errorMsg_when_park_given_fulled_parkingLot(){
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        for(int i=0;i<10;i++){
+            Car tempCar=new Car();
+            parkingLot.park(tempCar);
+        }
+        Car extraCar = new Car();
+
+        //then
+        assertThrows(FullParkingLotException.class,
+                ()-> parkingLot.park(extraCar),
+                "ParkingLot is fulled");
     }
 }
