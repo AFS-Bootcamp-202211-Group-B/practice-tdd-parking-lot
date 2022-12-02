@@ -1,5 +1,6 @@
 package com.parkinglot;
 
+import com.sun.glass.ui.TouchInputSupport;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -65,6 +66,33 @@ public class ParkingLotTest {
         assertNull(car);
     }
 
+    @Test
+    void should_return_null_when_get_a_car_use_a_used_ticket(){
+        ///Given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+        Ticket ticket = parkingLot.park(car);
+        parkingLot.getCar(ticket);
+        //When
+        Car getCarTwice = parkingLot.getCar(ticket);
+        //Then
+        assertNull(getCarTwice);
+    }
 
+    @Test
+    void should_return_null_when_full_parking_lot(){
+        ///Given
+        ParkingLot parkingLot = new ParkingLot(3);
+        for(int i = 0 ; i < 3 ; i++)
+        {
+            Car car = new Car();
+            parkingLot.park(car);
+        }
 
+        Car car = new Car();
+        Ticket ticket = parkingLot.park(car);
+
+        assertEquals(null,ticket);
+
+    }
 }
