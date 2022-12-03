@@ -3,7 +3,7 @@ package com.parkinglot;
 import java.util.ArrayList;
 
 public class StandardParkingBoy {
-    private ArrayList<ParkingLot> parkingLotList;
+    protected ArrayList<ParkingLot> parkingLotList;
 
     public StandardParkingBoy(ParkingLot parkingLot){
         parkingLotList = new ArrayList<>();
