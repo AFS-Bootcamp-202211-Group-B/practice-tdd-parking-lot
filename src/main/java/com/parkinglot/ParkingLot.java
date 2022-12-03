@@ -37,9 +37,9 @@ public class ParkingLot {
         return !parkedPosition.containsKey(ticket);
     }
 
-    public boolean checkAvailable(){
+    /*public boolean checkAvailable(){
         return parkedPosition.size() < capacity;
-    }
+    }*/
 
     public int getEmptyPosition(){
         return capacity - parkedPosition.size();

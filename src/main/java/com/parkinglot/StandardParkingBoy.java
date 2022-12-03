@@ -12,16 +12,23 @@ public class StandardParkingBoy {
 
     public ParkingTicket park(Car car){
         for(ParkingLot parkingLot:  parkingLotList){
-            if(parkingLot.checkAvailable())
+        //    if(parkingLot.checkAvailable())
+            try {
                 return parkingLot.park(car);
+            }
+            catch(NoAvailablePositionException e){}
         }
         throw new NoAvailablePositionException();
     }
 
     public Car fetch(ParkingTicket ticket) {
         for(ParkingLot parkingLot:  parkingLotList){
-            if(!parkingLot.isUnrecognizeedTicket(ticket))
+        //    if(!parkingLot.isUnrecognizeedTicket(ticket))
+            try {
                 return parkingLot.fetch(ticket);
+            }
+            catch(UnrecognizeedTicketException e){}
+
         }
         throw new UnrecognizeedTicketException();
     }
