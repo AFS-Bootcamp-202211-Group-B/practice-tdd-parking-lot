@@ -23,7 +23,7 @@ public class StandardParkingBoy {
             if(!parkingLot.isUnrecognizeedTicket(ticket))
                 return parkingLot.fetch(ticket);
         }
-        return null;
+        throw new UnrecognizeedTicketException();
     }
 
     public void addParkingLot(ParkingLot parkingLot) {
