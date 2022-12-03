@@ -17,11 +17,11 @@ public class ParkingLot {
             this.parkedCar.put(ticket,car);
             return ticket;
         }
-        throw new noAnyPositionException();
+        throw new NoAnyPositionException();
     }
-    public Car fetch(Ticket ticket) throws unrecognizedTicketException{
+    public Car fetch(Ticket ticket) throws UnrecognizedTicketException {
         if(isUnrecognizedTicket(ticket)) {
-            throw new unrecognizedTicketException();
+            throw new UnrecognizedTicketException();
         }
         Car fetchCar = this.parkedCar.get(ticket);
         this.parkedCar.remove(ticket);

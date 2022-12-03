@@ -14,7 +14,7 @@ public class SequentialPark implements ParkBehaviour{
         ParkingLot notFullParkingLot = parkingLots.stream()
                 .filter(parkingLot -> !parkingLot.isFull())
                 .findFirst()
-                .orElseThrow(noAnyPositionException::new);
+                .orElseThrow(NoAnyPositionException::new);
         return notFullParkingLot.park(car);
     }
 }

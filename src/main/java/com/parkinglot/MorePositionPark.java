@@ -18,7 +18,7 @@ public class MorePositionPark implements ParkBehaviour {
                 .collect(Collectors.toList());
         ParkingLot morePositionParkingLot = notFullParkingLots.stream()
                 .min(Comparator.comparingInt(parkingLot -> parkingLot.getParkedCar().size()))
-                .orElseThrow(noAnyPositionException::new);
+                .orElseThrow(NoAnyPositionException::new);
         return morePositionParkingLot.park(car);
     }
 }

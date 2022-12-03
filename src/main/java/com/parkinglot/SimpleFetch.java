@@ -14,7 +14,7 @@ public class SimpleFetch implements FetchBehaviour{
         ParkingLot fetchToParkingLot = parkingLots.stream()
                 .filter(parkingLot -> !parkingLot.isUnrecognizedTicket(ticket))
                 .findFirst()
-                .orElseThrow(unrecognizedTicketException::new);
+                .orElseThrow(UnrecognizedTicketException::new);
         return fetchToParkingLot.fetch(ticket);
     }
 }

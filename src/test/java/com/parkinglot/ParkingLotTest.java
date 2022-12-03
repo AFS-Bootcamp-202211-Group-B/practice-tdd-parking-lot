@@ -2,9 +2,6 @@ package com.parkinglot;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
@@ -53,7 +50,7 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot(1);
         Ticket ticket = new Ticket();
         //then
-        Exception exception = assertThrows(unrecognizedTicketException.class, () -> parkingLot.fetch(ticket));
+        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> parkingLot.fetch(ticket));
         assertEquals("Unrecognized parking ticket.",exception.getMessage());
     }
 
@@ -66,7 +63,7 @@ public class ParkingLotTest {
         parkingLot.fetch(ticket);
         //when
         //then
-        Exception exception = assertThrows(unrecognizedTicketException.class, () -> parkingLot.fetch(ticket));
+        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> parkingLot.fetch(ticket));
         assertEquals("Unrecognized parking ticket.",exception.getMessage());
 
     }
@@ -81,7 +78,7 @@ public class ParkingLotTest {
         //when
 
         //then
-        Exception exception = assertThrows(noAnyPositionException.class, () -> parkingLot.park(car2));
+        Exception exception = assertThrows(NoAnyPositionException.class, () -> parkingLot.park(car2));
         assertEquals("No available position.",exception.getMessage());
     }
 }

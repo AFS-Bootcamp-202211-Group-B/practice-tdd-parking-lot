@@ -78,7 +78,7 @@ public class SmartParkingBoyTest {
         Car car = new Car();
         Ticket ticket = new Ticket();
         //then
-        Exception exception = assertThrows(unrecognizedTicketException.class, () -> smartParkingBoy.fetch(ticket));
+        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> smartParkingBoy.fetch(ticket));
         assertEquals("Unrecognized parking ticket.",exception.getMessage());
 
     }
@@ -97,7 +97,7 @@ public class SmartParkingBoyTest {
         Ticket ticket = smartParkingBoy.park(car);
         smartParkingBoy.fetch(ticket);
         //then
-        Exception exception = assertThrows(unrecognizedTicketException.class, () -> smartParkingBoy.fetch(ticket));
+        Exception exception = assertThrows(UnrecognizedTicketException.class, () -> smartParkingBoy.fetch(ticket));
         assertEquals("Unrecognized parking ticket.",exception.getMessage());
     }
 
@@ -116,7 +116,7 @@ public class SmartParkingBoyTest {
         smartParkingBoy.park(bobCar);
         Car tomCar = new Car();
         //then
-        Exception exception = assertThrows(noAnyPositionException.class, () -> smartParkingBoy.park(tomCar));
+        Exception exception = assertThrows(NoAnyPositionException.class, () -> smartParkingBoy.park(tomCar));
         assertEquals("No available position.",exception.getMessage());
     }
 }
