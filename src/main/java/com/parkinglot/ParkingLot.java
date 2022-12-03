@@ -38,8 +38,6 @@ public class ParkingLot {
         return capacity - ticketCarHashMap.size();
     }
 
-
-
     public boolean isContainCar(Ticket ticket) {
         return ticketCarHashMap.containsKey(ticket);
     }

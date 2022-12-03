@@ -21,4 +21,19 @@ public class SmartParkingBoy extends StandardParkingBoy {
                 .park(car);
     }
 
+    @Override
+    public Car getCar(Ticket ticket) {
+        List<ParkingLot> parkingLots = super.getParkingLots();
+
+        if (parkingLots == null) {
+            return null;
+        }
+        return parkingLots.stream()
+                .filter(parkingLot -> parkingLot.isContainCar(ticket))
+                .findFirst()
+                .orElseThrow(() -> new UnrecognizedParkingTicketException("Unrecognized Parking Ticket"))
+                .getCar(ticket);
+    }
+
+
 }
