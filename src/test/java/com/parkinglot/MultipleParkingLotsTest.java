@@ -70,13 +70,33 @@ public class MultipleParkingLotsTest {
         StandardParkingBoy parkingBoy = new StandardParkingBoy(parkingLot);
         ParkingLot parkingLot2 = new ParkingLot(10);
         parkingBoy.addParkingLot(parkingLot2);
-        
+
         //when
         // Car fetchedCar = parkingLot.fetch(unrecognizedParkingTicket) ;
 
         //then
         Exception exception = assertThrows(UnrecognizeedTicketException.class,
                 () -> parkingBoy.fetch(unrecognizedParkingTicket));
+        assertEquals("Unrecognized parking ticket",exception.getMessage());
+    }
+
+    @Test
+    void should_return_exception_with_error_message_when_fetch_given_two_parking_lots_and_a_used_ticket(){
+        //given
+        ParkingLot parkingLot = new ParkingLot(10);
+        Car bobCar = new Car();
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(parkingLot);
+        ParkingTicket usedTicket = parkingBoy.park(bobCar);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        parkingBoy.addParkingLot(parkingLot2);
+        parkingBoy.fetch(usedTicket) ;
+
+        //when
+        // Car fetchedCar = parkingLot.fetch(unrecognizedParkingTicket) ;
+
+        //then
+        Exception exception = assertThrows(UnrecognizeedTicketException.class,
+                () -> parkingLot.fetch(usedTicket));
         assertEquals("Unrecognized parking ticket",exception.getMessage());
     }
 
