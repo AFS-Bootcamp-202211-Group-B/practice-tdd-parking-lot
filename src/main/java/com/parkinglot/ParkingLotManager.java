@@ -27,4 +27,17 @@ public class ParkingLotManager extends StandardParkingBoy {
         }
         return null;
     }
+
+
+    public Ticket park(StandardParkingBoy parkingBoy, Car car) {
+        try {
+            if (parkingBoys.contains(parkingBoy)) {
+                return parkingBoy.park(car);
+            }
+
+        } catch (NoAvailablePosition exception) {
+            throw new NoAvailablePosition("No available position");
+        }
+        return null; // throw exception~, not suggested to return null -> NullPointExcep
+    }
 }
