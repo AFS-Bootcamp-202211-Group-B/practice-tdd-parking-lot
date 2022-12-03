@@ -52,7 +52,7 @@ class ParkingLotManagerTest {
     }
     @Test
     void should_return_the_right_car_with_each_ticket_when_get_car_twice_two_lots_both_with_parked_cars_and_two_parking_tickets() {
-
+        //given
         ParkingLot firstParkingLot = new ParkingLot();
         ParkingLot secondParkingLot = new ParkingLot();
 
@@ -67,11 +67,17 @@ class ParkingLotManagerTest {
         Ticket secondTicket = secondParkingLot.park(secondCar);
 
 
+
         parkingLots.add(firstParkingLot);
         parkingLots.add(secondParkingLot);
 
         ParkingLotManager parkingLotManager = new ParkingLotManager(parkingLots);
-
+        //when
+        Car firstParkedCar = parkingLotManager.getCar(firstTicket);
+        Car secondParkedCar = parkingLotManager.getCar(secondTicket);
+        //then
+        assertEquals(firstCar, firstParkedCar);
+        assertEquals(secondCar, secondParkedCar);
 
     }
 }
