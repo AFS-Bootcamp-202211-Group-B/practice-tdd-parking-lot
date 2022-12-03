@@ -23,10 +23,9 @@ public class ParkingLot {
         if(isUnrecognizedTicket(ticket)) {
             throw new unrecognizedTicketException();
         }
-            Car fetchCar = this.parkedCar.get(ticket);
-            this.parkedCar.remove(ticket);
-            return fetchCar;
-
+        Car fetchCar = this.parkedCar.get(ticket);
+        this.parkedCar.remove(ticket);
+        return fetchCar;
     }
 
     protected boolean isUnrecognizedTicket(Ticket ticket) {
