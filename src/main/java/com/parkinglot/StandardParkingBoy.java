@@ -14,7 +14,9 @@ public class StandardParkingBoy {
         this.parkingLot = parkingLots;
     }
 
-
+    public List<ParkingLot> getParkingLots() {
+        return parkingLot;
+    }
 
     public  Ticket park(Car car)
     {

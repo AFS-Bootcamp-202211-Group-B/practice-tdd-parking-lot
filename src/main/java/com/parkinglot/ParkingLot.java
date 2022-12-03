@@ -38,11 +38,7 @@ public class ParkingLot {
         return capacity - ticketCarHashMap.size();
     }
 
-    public int getTotalCapacity () { return capacity; }
 
-    public double getAvailablePositionRate() {
-        return getAvailablePositionCount() * 1.0 / getTotalCapacity();
-    }
 
     public boolean isContainCar(Ticket ticket) {
         return ticketCarHashMap.containsKey(ticket);
