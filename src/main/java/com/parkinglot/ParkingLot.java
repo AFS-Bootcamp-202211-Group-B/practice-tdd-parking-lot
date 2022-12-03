@@ -31,7 +31,7 @@ public class ParkingLot {
     protected boolean isUnrecognizedTicket(Ticket ticket) {
         return !this.parkedCar.containsKey(ticket);
     }
-    protected boolean isFull() {
+    public boolean isFull() {
         return this.parkedCar.size() >= capacity;
     }
 

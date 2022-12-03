@@ -4,30 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class StandardParkingBoy {
-    protected final List<ParkingLot> parkingLots;
+public class StandardParkingBoy extends ParkingBoy{
+
     public StandardParkingBoy(ParkingLot parkingLot) {
-        List<ParkingLot> parkingLots = new ArrayList<>();
-        parkingLots.add(parkingLot);
-        this.parkingLots = parkingLots;
+        super(parkingLot);
     }
     public StandardParkingBoy(List<ParkingLot> parkingLots) {
-        this.parkingLots = parkingLots;
+        super(parkingLots);
     }
 
     public Ticket park(Car car) {
-        ParkingLot notFullParkingLot = parkingLots.stream()
-                .filter(parkingLot -> !parkingLot.isFull())
-                .findFirst()
-                .orElseThrow(noAnyPositionException::new);
-        return notFullParkingLot.park(car);
+        ParkBehaviour sequentialPark = new SequentialPark(parkingLots);
+        return sequentialPark.park(car);
+
     }
 
     public Car fetch(Ticket ticket) {
-        ParkingLot fetchToParkingLot = parkingLots.stream()
-                .filter(parkingLot -> !parkingLot.isUnrecognizedTicket(ticket))
-                .findFirst()
-                .orElseThrow(unrecognizedTicketException::new);
-        return fetchToParkingLot.fetch(ticket);
+        FetchBehaviour simpleFetch = new SimpleFetch(parkingLots);
+        return simpleFetch.fetch(ticket);
     }
 }
