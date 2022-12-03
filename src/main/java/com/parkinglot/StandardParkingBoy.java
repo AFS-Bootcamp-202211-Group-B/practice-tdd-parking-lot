@@ -1,18 +1,32 @@
 package com.parkinglot;
 
+import java.util.ArrayList;
+
 public class StandardParkingBoy {
-    private ParkingLot parkingLot;
+    private ArrayList<ParkingLot> parkingLotList;
 
     public StandardParkingBoy(ParkingLot parkingLot){
-        this.parkingLot = parkingLot;
+        parkingLotList = new ArrayList<>();
+        parkingLotList.add(parkingLot);
     }
 
     public ParkingTicket park(Car car){
-        return this.parkingLot.park(car);
+        for(ParkingLot parkingLot:  parkingLotList){
+            if(parkingLot.checkAvailable())
+                return parkingLot.park(car);
+        }
+       return null;
     }
 
     public Car fetch(ParkingTicket ticket) {
-        return this.parkingLot.fetch(ticket);
+        for(ParkingLot parkingLot:  parkingLotList){
+            if(!parkingLot.isUnrecognizeedTicket(ticket))
+                return parkingLot.fetch(ticket);
+        }
+        return null;
     }
 
+    public void addParkingLot(ParkingLot parkingLot) {
+        parkingLotList.add(parkingLot);
+    }
 }

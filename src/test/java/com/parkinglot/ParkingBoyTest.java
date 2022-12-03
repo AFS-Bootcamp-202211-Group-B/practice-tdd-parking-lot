@@ -78,7 +78,7 @@ public class ParkingBoyTest {
         Car bobCar = new Car();
         StandardParkingBoy parkingBoy = new StandardParkingBoy(parkingLot);
         ParkingTicket usedTicket = parkingBoy.park(bobCar);
-        Car bob = parkingBoy.fetch(usedTicket) ;
+        parkingBoy.fetch(usedTicket) ;
 
         //when
 
@@ -95,7 +95,7 @@ public class ParkingBoyTest {
         //when
         Car bob = new Car();
         StandardParkingBoy parkingBoy = new StandardParkingBoy(parkingLot);
-        ParkingTicket bobTickete = parkingBoy.park(bob);
+        parkingBoy.park(bob);
         Car aliceCar = new Car();
 
         //then
@@ -103,4 +103,8 @@ public class ParkingBoyTest {
                 () -> parkingBoy.park(aliceCar));
         assertEquals("No available position",exception.getMessage());
     }
+
+
+
+
 }
