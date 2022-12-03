@@ -198,10 +198,8 @@ public class StandardParkingBoyTest {
         Car bobCar = new Car();
         parkingBoy.park(bobCar);
         Car tomCar = new Car();
-        //when
+        //then
         Exception exception = assertThrows(noAnyPositionException.class, () -> parkingBoy.park(tomCar));
         assertEquals("No available position.",exception.getMessage());
-        //then
-
     }
 }
