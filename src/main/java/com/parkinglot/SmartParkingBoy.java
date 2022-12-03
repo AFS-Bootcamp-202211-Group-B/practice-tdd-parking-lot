@@ -23,6 +23,10 @@ public class SmartParkingBoy{
     }
 
     public Car fetch(Ticket ticket) {
-        return new Car();
+        ParkingLot fetchToParkingLot = parkingLots.stream()
+                .filter(parkingLot -> !parkingLot.isUnrecognizedTicket(ticket))
+                .findFirst()
+                .orElseThrow(unrecognizedTicketException::new);
+        return fetchToParkingLot.fetch(ticket);
     }
 }
