@@ -185,7 +185,7 @@ public class StandardParkingBoyTest {
     }
 
     @Test
-    void should_park_first_parking_lot_when_park_given_2_parking_lots_with_available_position_and_2_parking_lots() {
+    void should_return_exception_when_park_given_without_position_in_2_parking_lots() {
         //given
         ParkingLot firstParkingLot = new ParkingLot(1);
         ParkingLot secondParkingLot = new ParkingLot(1);
