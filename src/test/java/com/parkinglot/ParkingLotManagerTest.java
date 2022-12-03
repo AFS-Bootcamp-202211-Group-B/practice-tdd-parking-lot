@@ -113,6 +113,37 @@ class ParkingLotManagerTest {
 
     }
 
+    @Test
+    void should_throw_unrecognized_parking_ticket_exception_when_parking_boys_with_a_lot_an_used_ticket() {
+        // given
+        ParkingLot firstBoyParkingLot = new ParkingLot();
+        ParkingLot secondBoyParkingLot = new ParkingLot();
+
+        Ticket ticket = firstBoyParkingLot.park(new Car());
+        secondBoyParkingLot.park(new Car());
+
+        List<ParkingLot> firstBoyParkingLots = new ArrayList<>();
+        List<ParkingLot> secondBoyParkingLots = new ArrayList<>();
+
+        firstBoyParkingLots.add(firstBoyParkingLot);
+        secondBoyParkingLots.add(secondBoyParkingLot);
+
+        StandardParkingBoy firstParkingBoy = new StandardParkingBoy(firstBoyParkingLots);
+        StandardParkingBoy secondParkingBoy = new StandardParkingBoy(secondBoyParkingLots);
+
+        List<StandardParkingBoy> parkingBoys = Arrays.asList(firstParkingBoy, secondParkingBoy);
+
+        ParkingLotManager parkingLotManager = new ParkingLotManager(null,parkingBoys);
+
+        parkingLotManager.getCar(firstParkingBoy, ticket);
+
+        // when
+        // then
+        Exception exception = assertThrows(UnrecognizedParkingTicketException.class, () -> parkingLotManager.getCar(firstParkingBoy, ticket));
+        assertEquals("Unrecognized Parking Ticket", exception.getMessage());
+
+    }
+
 
 
 }
