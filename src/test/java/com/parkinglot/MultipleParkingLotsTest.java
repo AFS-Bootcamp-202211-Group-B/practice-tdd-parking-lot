@@ -100,5 +100,25 @@ public class MultipleParkingLotsTest {
         assertEquals("Unrecognized parking ticket",exception.getMessage());
     }
 
+    @Test
+    void should_return_exception_with_error_message_when_park_car_given_two_parking_lots_without_position_and_car(){
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        //when
+        Car bob = new Car();
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(parkingLot);
+        parkingBoy.park(bob);
+        parkingBoy.addParkingLot(parkingLot2);
+        Car aliceCar = new Car();
+        parkingBoy.park(aliceCar);
+        Car chrisCar = new Car();
+
+        //then
+        Exception exception = assertThrows(NoAvailablePositionException.class,
+                () -> parkingBoy.park(chrisCar));
+        assertEquals("No available position",exception.getMessage());
+    }
+
 
 }

@@ -15,7 +15,7 @@ public class StandardParkingBoy {
             if(parkingLot.checkAvailable())
                 return parkingLot.park(car);
         }
-       return null;
+        throw new NoAvailablePositionException();
     }
 
     public Car fetch(ParkingTicket ticket) {
