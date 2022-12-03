@@ -2,10 +2,10 @@ package com.parkinglot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class StandardParkingBoy {
-    private final List<ParkingLot> parkingLots;
+    protected final List<ParkingLot> parkingLots;
     public StandardParkingBoy(ParkingLot parkingLot) {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(parkingLot);

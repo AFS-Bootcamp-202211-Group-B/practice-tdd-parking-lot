@@ -1,15 +1,14 @@
 package com.parkinglot;
 
-import java.util.ArrayList;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SmartParkingBoy{
+public class SmartParkingBoy extends StandardParkingBoy{
 
-    private final List<ParkingLot> parkingLots;
     public SmartParkingBoy(List<ParkingLot> parkingLots) {
-        this.parkingLots = parkingLots;
+        super(parkingLots);
     }
 
     public Ticket park(Car car) {

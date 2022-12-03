@@ -118,6 +118,5 @@ public class SmartParkingBoyTest {
         //then
         Exception exception = assertThrows(noAnyPositionException.class, () -> smartParkingBoy.park(tomCar));
         assertEquals("No available position.",exception.getMessage());
-
     }
 }
