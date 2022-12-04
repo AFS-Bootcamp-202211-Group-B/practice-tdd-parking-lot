@@ -47,4 +47,22 @@ class SmartParkingBoyTest {
         assertTrue(parkingLot1.hasTicket(actual));
         assertFalse(parkingLot2.hasTicket(actual));
     }
+    @Test
+    void should_NoAvailablePositionException_when_SmartParkingBoy_park_given_parkingLots_full() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        Car car1 = new Car();
+        Car car2 = new Car();
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(new ArrayList<>(Arrays.asList(parkingLot1, parkingLot2)));
+        smartParkingBoy.park(car1);
+        smartParkingBoy.park(car2);
+
+        Car newCar = new Car();
+        //then
+        Exception exception = assertThrows(NoAvailablePositionException.class, () -> {
+            smartParkingBoy.park(newCar);
+        });
+        assertEquals("No available position.", exception.getMessage());
+    }
 }
