@@ -21,5 +21,18 @@ class SmartParkingBoyTest {
         assertTrue(parkingLot1.hasTicket(actual));
         assertFalse(parkingLot2.hasTicket(actual));
     }
+    @Test
+    void should_return_second_parkingLot_ticket_when_SmartParkingBoy_park_given_second_parkingLot_has_more_space() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(5);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        Car car = new Car();
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(new ArrayList<>(Arrays.asList(parkingLot1, parkingLot2)));
+        //when
+        Ticket actual = smartParkingBoy.park(car);
+        //then
+        assertFalse(parkingLot1.hasTicket(actual));
+        assertTrue(parkingLot2.hasTicket(actual));
+    }
     
 }
