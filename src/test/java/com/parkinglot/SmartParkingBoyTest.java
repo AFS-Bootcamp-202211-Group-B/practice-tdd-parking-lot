@@ -65,4 +65,16 @@ class SmartParkingBoyTest {
         });
         assertEquals("No available position.", exception.getMessage());
     }
+    @Test
+    void should_return_parked_car_when_fetch_given_parkingLot_and_parked_boy() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(new ArrayList<>(Arrays.asList(parkingLot)));
+        Car car = new Car();
+        Ticket ticket = smartParkingBoy.park(car);
+        //when
+        Car actual = smartParkingBoy.fetch(ticket);
+        //then
+        assertEquals(car, actual);
+    }
 }

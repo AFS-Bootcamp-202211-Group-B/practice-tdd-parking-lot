@@ -18,4 +18,5 @@ public class SmartParkingBoy {
             .max(Comparator.comparing(ParkingLot::getRemainingPositions))
             .orElseThrow(NoAvailablePositionException::new);
     }
+
 }
