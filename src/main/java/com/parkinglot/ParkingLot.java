@@ -31,4 +31,10 @@ public class ParkingLot {
         if(parkedCar == null) throw new UnrecognizedMessageException();
         return parkedCar;
     }
+    public int getRemainingPositions(){
+        return this.capacity - this.carTicketMap.size();
+    }
+    public Boolean hasTicket(Ticket ticket) {
+        return carTicketMap.containsKey(ticket);
+    }
 }
