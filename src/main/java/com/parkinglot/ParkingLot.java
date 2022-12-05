@@ -1,0 +1,41 @@
+package com.parkinglot;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class ParkingLot {
+    private Map<Ticket, Car> parkedPosition = new HashMap<>();
+    private final int capacity;
+
+    public int countAvailablePositions() {
+        return capacity - parkedPosition.size();
+    }
+
+    public ParkingLot(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public ParkingLot() {
+        this.capacity = 10;
+    }
+
+    public Ticket park(Car car) {
+        if (isFull())
+            throw new NoAvailablePositionException();
+        Ticket ticket = new Ticket();
+        parkedPosition.put(ticket, car);
+        return ticket;
+    }
+
+    private boolean isFull() {
+        return parkedPosition.size() >= capacity;
+    }
+
+    public Car fetch(Ticket ticket) {
+        Car car = parkedPosition.get(ticket);
+        if (car == null)
+            throw new UnrecognizedTicketException();
+        parkedPosition.remove(ticket);
+        return car;
+    }
+}
