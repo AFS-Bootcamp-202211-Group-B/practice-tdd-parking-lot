@@ -12,13 +12,13 @@ public class StandardParkingBoy extends ParkingBoy{
     public StandardParkingBoy(List<ParkingLot> parkingLots) {
         super(parkingLots);
     }
-
+    @Override
     public Ticket park(Car car) {
         ParkBehaviour sequentialPark = new SequentialPark(parkingLots);
         return sequentialPark.park(car);
 
     }
-
+    @Override
     public Car fetch(Ticket ticket) {
         FetchBehaviour simpleFetch = new SimpleFetch(parkingLots);
         return simpleFetch.fetch(ticket);
